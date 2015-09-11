@@ -2,6 +2,7 @@
 
 class ArrayOfTimeframeTimeFrame extends BaseArrayOfType
 {
+
     /**
      * The name of the array property this class is a wrapper of.
      */
