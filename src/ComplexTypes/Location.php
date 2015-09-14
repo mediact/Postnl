@@ -51,10 +51,10 @@ class Location extends BaseLocation
     protected $City;
 
     /**
-     * @param string $AllowSundaySorting
-     * @param string $DeliveryDate
+     * @param bool $AllowSundaySorting
+     * @param \DateTime $DeliveryDate
      * @param ArrayOfstring $DeliveryOptions
-     * @param string $OpeningTime
+     * @param \DateTime $OpeningTime
      * @param ArrayOfstring $Options
      * @param string $Postalcode
      * @param Coordinate $Coordinates
@@ -65,9 +65,9 @@ class Location extends BaseLocation
      */
     public function __construct(
         $AllowSundaySorting,
-        $DeliveryDate,
+        \DateTime $DeliveryDate,
         ArrayOfstring $DeliveryOptions,
-        $OpeningTime,
+        \DateTime $OpeningTime,
         ArrayOfstring $Options,
         $Postalcode,
         Coordinate $Coordinates = null,

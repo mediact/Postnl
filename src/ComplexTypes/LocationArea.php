@@ -17,19 +17,19 @@ class LocationArea extends BaseLocation
     protected $CoordinatesSouthEast;
 
     /**
-     * @param string $AllowSundaySorting
-     * @param string $DeliveryDate
+     * @param bool $AllowSundaySorting
+     * @param \DateTime $DeliveryDate
      * @param ArrayOfstring $DeliveryOptions
-     * @param string $OpeningTime
+     * @param \DateTime $OpeningTime
      * @param ArrayOfstring $Options
      * @param Coordinate $CoordinatesNorthWest
      * @param Coordinate $CoordinatesSouthEast
      */
     public function __construct(
         $AllowSundaySorting,
-        $DeliveryDate,
+        \DateTime $DeliveryDate,
         ArrayOfstring $DeliveryOptions,
-        $OpeningTime,
+        \DateTime $OpeningTime,
         ArrayOfstring $Options,
         Coordinate $CoordinatesNorthWest,
         Coordinate $CoordinatesSouthEast
