@@ -100,24 +100,24 @@ class ResponseLocation extends BaseType
         $Saleschannel,
         OpeningHours $OpeningHours,
         ArrayOfstring $DeliveryOptions,
-        $Distance, 
-        $PartnerName, 
+        $Distance,
+        $PartnerName,
         $RetailFormulaName
     ) {
-        $this->Name($Name);
-        $this->Address($Address);
-        $this->PhoneNumber($PhoneNumber);
-        $this->RetailNetworkID($RetailNetworkID);
-        $this->LocationCode($LocationCode);
-        $this->Latitude($Latitude);
-        $this->Longitude($Longitude);
-        $this->TerminalType($TerminalType);
-        $this->Saleschannel($Saleschannel);
-        $this->OpeningHours($OpeningHours);
-        $this->DeliveryOptions($DeliveryOptions);
-        $this->Distance($Distance);
-        $this->PartnerName($PartnerName);
-        $this->RetailFormulaName($RetailFormulaName);
+        $this->setName($Name);
+        $this->setAddress($Address);
+        $this->setPhoneNumber($PhoneNumber);
+        $this->setRetailNetworkID($RetailNetworkID);
+        $this->setLocationCode($LocationCode);
+        $this->setLatitude($Latitude);
+        $this->setLongitude($Longitude);
+        $this->setTerminalType($TerminalType);
+        $this->setSaleschannel($Saleschannel);
+        $this->setOpeningHours($OpeningHours);
+        $this->setDeliveryOptions($DeliveryOptions);
+        $this->setDistance($Distance);
+        $this->setPartnerName($PartnerName);
+        $this->setRetailFormulaName($RetailFormulaName);
     }
 
     /**

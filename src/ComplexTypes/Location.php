@@ -45,7 +45,7 @@ class Location extends BaseLocation
     /**
      * The city of the locations.
      * Optional but increases accuracy of found results.
-     * 
+     *
      * @var string $City
      */
     protected $City;
