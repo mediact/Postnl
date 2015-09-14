@@ -1,7 +1,19 @@
 <?php namespace DivideBV\Postnl\ComplexTypes;
 
+use Mage\Adminhtml\Test\Block\Catalog\Product\Edit\Tab\CustomOptions\DateTime;
+
 class BaseLocation extends BaseType
 {
+    /**
+     * Format used for the delivery date
+     */
+    const FORMAT_DELIVERY_DATE = 'd-m-Y';
+
+    /**
+     * Format used for the opening time
+     */
+    const FORMAT_OPENING_TIME = 'H:i:s';
+
     /**
      * Possible values are true/false (no capitals allowed)
      *
@@ -55,17 +67,17 @@ class BaseLocation extends BaseType
     protected $Options;
 
     /**
-     * @param string $AllowSundaySorting
-     * @param string $DeliveryDate
+     * @param bool $AllowSundaySorting
+     * @param \DateTime $DeliveryDate
      * @param ArrayOfstring $DeliveryOptions
-     * @param string $OpeningTime
+     * @param \DateTime $OpeningTime
      * @param ArrayOfstring $Options
      */
     public function __construct(
         $AllowSundaySorting,
-        $DeliveryDate,
+        \DateTime $DeliveryDate,
         ArrayOfstring $DeliveryOptions,
-        $OpeningTime,
+        \DateTime $OpeningTime,
         ArrayOfstring $Options
     ) {
         $this->setAllowSundaySorting($AllowSundaySorting);
@@ -76,11 +88,11 @@ class BaseLocation extends BaseType
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getAllowSundaySorting()
+    public function isAllowSundaySorting()
     {
-        return $this->AllowSundaySorting;
+        return $this->AllowSundaySorting == 'true';
     }
 
     /**
@@ -89,25 +101,30 @@ class BaseLocation extends BaseType
      */
     public function setAllowSundaySorting($AllowSundaySorting)
     {
-        $this->AllowSundaySorting = $AllowSundaySorting;
+        $this->AllowSundaySorting = $AllowSundaySorting ? 'true' : 'false';
         return $this;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDeliveryDate()
     {
-        return $this->DeliveryDate;
+        return \DateTime::createFromFormat(
+            self::FORMAT_DELIVERY_DATE,
+            $this->DeliveryDate
+        );
     }
 
     /**
-     * @param string $DeliveryDate
+     * @param \DateTime $DeliveryDate
      * @return BaseLocation
      */
-    public function setDeliveryDate($DeliveryDate)
+    public function setDeliveryDate(\DateTime $DeliveryDate)
     {
-        $this->DeliveryDate = $DeliveryDate;
+        $this->DeliveryDate = $DeliveryDate->format(
+            self::FORMAT_DELIVERY_DATE
+        );
         return $this;
     }
 
@@ -130,20 +147,25 @@ class BaseLocation extends BaseType
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getOpeningTime()
     {
-        return $this->OpeningTime;
+        return \DateTime::createFromFormat(
+            self::FORMAT_OPENING_TIME,
+            $this->OpeningTime
+        );
     }
 
     /**
-     * @param string $OpeningTime
+     * @param \DateTime $OpeningTime
      * @return BaseLocation
      */
-    public function setOpeningTime($OpeningTime)
+    public function setOpeningTime(\DateTime $OpeningTime)
     {
-        $this->OpeningTime = $OpeningTime;
+        $this->OpeningTime = $OpeningTime->format(
+            self::FORMAT_OPENING_TIME
+        );
         return $this;
     }
 
