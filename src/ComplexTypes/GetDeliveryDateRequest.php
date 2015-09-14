@@ -34,7 +34,7 @@ class GetDeliveryDateRequest extends BaseType
 
     /**
      * @param Message $Message
-     * @return GetDeliveryDate
+     * @return GetDeliveryDateRequest
      */
     public function setMessage($Message)
     {

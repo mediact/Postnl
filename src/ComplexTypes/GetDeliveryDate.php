@@ -148,7 +148,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param string $PostalCode
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setPostalCode($PostalCode)
     {
@@ -166,7 +166,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param string $CountryCode
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setCountryCode($CountryCode)
     {
@@ -184,7 +184,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param string $ShippingDate
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setShippingDate($ShippingDate)
     {
@@ -202,7 +202,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param string $ShippingDuration
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setShippingDuration($ShippingDuration)
     {
@@ -220,7 +220,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param string $AllowSundaySorting
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setAllowSundaySorting($AllowSundaySorting)
     {
@@ -256,7 +256,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param ArrayOfstring $Options
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setOptions($Options)
     {
@@ -274,7 +274,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param string $Street
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setStreet($Street)
     {
@@ -292,7 +292,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param string $HouseNr
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setHouseNr($HouseNr)
     {
@@ -310,7 +310,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param string $HouseNrExt
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setHouseNrExt($HouseNrExt)
     {
@@ -328,7 +328,7 @@ class GetDeliveryDate extends BaseType
 
     /**
      * @param string $City
-     * @return GetSentDate
+     * @return GetDeliveryDate
      */
     public function setCity($City)
     {
