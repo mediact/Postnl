@@ -2,6 +2,10 @@
 
 class GetDeliveryDateResponse extends BaseType
 {
+    /**
+     * Format for the delivery date
+     */
+    const FORMAT_DELIVERY_DATE = 'd-m-Y';
 
     /**
      * @var string $DeliveryDate
@@ -14,30 +18,35 @@ class GetDeliveryDateResponse extends BaseType
     protected $Option;
 
     /**
-     * @param string $DeliveryDate
+     * @param \DateTime $DeliveryDate
      * @param string $Option
      */
-    public function __construct($DeliveryDate, $Option)
+    public function __construct(\DateTime $DeliveryDate, $Option)
     {
         $this->setDeliveryDate($DeliveryDate);
         $this->setOption($Option);
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDeliveryDate()
     {
-        return $this->DeliveryDate;
+        return \DateTime::createFromFormat(
+            self::FORMAT_DELIVERY_DATE,
+            $this->DeliveryDate
+        );
     }
 
     /**
-     * @param string $DeliveryDate
+     * @param \DateTime $DeliveryDate
      * @return GetDeliveryDateResponse
      */
-    public function setDeliveryDate($DeliveryDate)
+    public function setDeliveryDate(\DateTime $DeliveryDate)
     {
-        $this->DeliveryDate = $DeliveryDate;
+        $this->DeliveryDate = $DeliveryDate->format(
+            self::FORMAT_DELIVERY_DATE
+        );
         return $this;
     }
 
