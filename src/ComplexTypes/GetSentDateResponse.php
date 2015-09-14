@@ -2,6 +2,10 @@
 
 class GetSentDateResponse extends BaseType
 {
+    /**
+     * Format for the sent date
+     */
+    const FORMAT_SENT_DATE = 'd-m-Y';
 
     /**
      * @var string $Option
@@ -15,9 +19,9 @@ class GetSentDateResponse extends BaseType
 
     /**
      * @param string $Option
-     * @param string $SentDate
+     * @param \DateTime $SentDate
      */
-    public function __construct($Option, $SentDate)
+    public function __construct($Option, \DateTime $SentDate)
     {
         $this->setOption($Option);
         $this->setSentDate($SentDate);
@@ -42,20 +46,25 @@ class GetSentDateResponse extends BaseType
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getSentDate()
     {
-        return $this->SentDate;
+        return \DateTime::createFromFormat(
+            self::FORMAT_SENT_DATE,
+            $this->SentDate
+        );
     }
 
     /**
-     * @param string $SentDate
+     * @param \DateTime $SentDate
      * @return GetSentDateResponse
      */
-    public function setSentDate($SentDate)
+    public function setSentDate(\DateTime $SentDate)
     {
-        $this->SentDate = $SentDate;
+        $this->SentDate = $SentDate->format(
+            self::FORMAT_SENT_DATE
+        );
         return $this;
     }
 }

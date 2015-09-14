@@ -28,8 +28,8 @@ class DeliveryDateClient extends BaseClient
         'Message',
         'GetDeliveryDateResponse',
         'GetSentDate',
-        'GetSentDate',
-        'GetSentDate',
+        'GetSentDateRequest',
+        'GetSentDateResponse',
     ];
 
     /**

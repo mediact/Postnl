@@ -3,6 +3,11 @@
 class GetSentDate extends BaseType
 {
     /**
+     * Format for the delivery date
+     */
+    const FORMAT_DELIVERY_DATE = 'd-m-Y';
+
+    /**
      * The postal code of the delivery address.
      *
      * @var string $PostalCode
@@ -89,9 +94,9 @@ class GetSentDate extends BaseType
     /**
      * @param string $PostalCode
      * @param string $CountryCode
-     * @param string $DeliveryDate
+     * @param \DateTime $DeliveryDate
      * @param string $ShippingDuration
-     * @param string $AllowSundaySorting
+     * @param bool $AllowSundaySorting
      * @param ArrayOfstring $Options
      * @param string $Street
      *     Optional
@@ -105,7 +110,7 @@ class GetSentDate extends BaseType
     public function __construct(
         $PostalCode,
         $CountryCode,
-        $DeliveryDate,
+        \DateTime $DeliveryDate,
         $ShippingDuration,
         $AllowSundaySorting,
         ArrayOfstring $Options,
@@ -165,20 +170,25 @@ class GetSentDate extends BaseType
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDeliveryDate()
     {
-        return $this->DeliveryDate;
+        return \DateTime::createFromFormat(
+            self::FORMAT_DELIVERY_DATE,
+            $this->DeliveryDate
+        );
     }
 
     /**
-     * @param string $DeliveryDate
+     * @param \DateTime $DeliveryDate
      * @return GetSentDate
      */
-    public function setDeliveryDate($DeliveryDate)
+    public function setDeliveryDate(\DateTime $DeliveryDate)
     {
-        $this->DeliveryDate = $DeliveryDate;
+        $this->DeliveryDate = $DeliveryDate->format(
+            self::FORMAT_DELIVERY_DATE
+        );
         return $this;
     }
 
@@ -201,7 +211,7 @@ class GetSentDate extends BaseType
     }
 
     /**
-     * @return string
+     * @return bool
      */
     public function getAllowSundaySorting()
     {
@@ -209,12 +219,12 @@ class GetSentDate extends BaseType
     }
 
     /**
-     * @param string $AllowSundaySorting
+     * @param bool $AllowSundaySorting
      * @return GetSentDate
      */
     public function setAllowSundaySorting($AllowSundaySorting)
     {
-        $this->AllowSundaySorting = $AllowSundaySorting;
+        $this->AllowSundaySorting = $AllowSundaySorting ? 'true' : 'false';
         return $this;
     }
 

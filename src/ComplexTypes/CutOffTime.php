@@ -2,6 +2,10 @@
 
 class CutOffTime extends BaseType
 {
+    /**
+     * Format used for the time
+     */
+    const FORMAT_TIME = 'H:i:s';
 
     /**
      * Number of the day of week.
@@ -24,7 +28,7 @@ class CutOffTime extends BaseType
 
     /**
      * @param string $Day
-     * @param string $Time
+     * @param \DateTime $Time
      */
     public function __construct($Day, $Time)
     {
@@ -51,20 +55,23 @@ class CutOffTime extends BaseType
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getTime()
     {
-        return $this->Time;
+        return \DateTime::createFromFormat(
+            self::FORMAT_TIME,
+            $this->Time
+        );
     }
 
     /**
-     * @param string $Time
+     * @param \DateTime $Time
      * @return CutOffTime
      */
-    public function setTime($Time)
+    public function setTime(\DateTime $Time)
     {
-        $this->Time = $Time;
+        $this->Time = $Time->format(self::FORMAT_TIME);
         return $this;
     }
 }
