@@ -222,7 +222,7 @@ class GetDeliveryDate extends BaseType
     /**
      * @return bool
      */
-    public function getAllowSundaySorting()
+    public function isAllowSundaySorting()
     {
         return $this->AllowSundaySorting == 'true';
     }
