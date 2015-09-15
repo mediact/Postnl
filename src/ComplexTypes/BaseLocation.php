@@ -90,13 +90,13 @@ class BaseLocation extends BaseType
     /**
      * @return bool
      */
-    public function isAllowSundaySorting()
+    public function getAllowSundaySorting()
     {
         return $this->AllowSundaySorting == 'true';
     }
 
     /**
-     * @param string $AllowSundaySorting
+     * @param bool $AllowSundaySorting
      * @return BaseLocation
      */
     public function setAllowSundaySorting($AllowSundaySorting)
