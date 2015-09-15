@@ -215,7 +215,7 @@ class GetSentDate extends BaseType
      */
     public function getAllowSundaySorting()
     {
-        return $this->AllowSundaySorting;
+        return $this->AllowSundaySorting == 'true';
     }
 
     /**
