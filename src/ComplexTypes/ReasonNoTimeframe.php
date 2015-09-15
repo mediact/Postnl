@@ -3,6 +3,11 @@
 class ReasonNoTimeframe extends BaseType
 {
     /**
+     * Format for date
+     */
+    const FORMAT_DATE = 'd-m-Y';
+
+    /**
      * @var string $Code
      */
     protected $Code;
@@ -24,11 +29,11 @@ class ReasonNoTimeframe extends BaseType
 
     /**
      * @param string $Code
-     * @param string $Date
+     * @param \DateTime $Date
      * @param string $Description
      * @param ArrayOfstring $Options
      */
-    public function __construct($Code, $Date, $Description, ArrayOfstring $Options)
+    public function __construct($Code, \DateTime $Date, $Description, ArrayOfstring $Options)
     {
         $this->setCode($Code);
         $this->setDate($Date);
@@ -55,20 +60,23 @@ class ReasonNoTimeframe extends BaseType
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDate()
     {
-        return $this->Date;
+        return \DateTime::createFromFormat(
+            self::FORMAT_DATE,
+            $this->Date
+        );
     }
 
     /**
-     * @param string $Date
+     * @param \DateTime $Date
      * @return ReasonNoTimeframe
      */
     public function setDate($Date)
     {
-        $this->Date = $Date;
+        $this->Date = $Date->format(self::FORMAT_DATE);
         return $this;
     }
 
