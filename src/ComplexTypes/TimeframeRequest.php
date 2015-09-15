@@ -322,7 +322,7 @@ class TimeframeRequest extends BaseType
     }
 
     /**
-     * @param string $SundaySorting
+     * @param bool $SundaySorting
      * @return TimeframeRequest
      */
     public function setSundaySorting($SundaySorting)
