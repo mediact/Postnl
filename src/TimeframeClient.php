@@ -20,7 +20,7 @@ class TimeframeClient extends BaseClient
      *     The complex types used by this client.
      */
     protected $classes = [
-        'TimeframeRequest',
+        'GetTimeframesRequest',
         'ArrayOfstring',
         'Message',
         'GetTimeframesResponse',

@@ -2,27 +2,56 @@
 
 class TimeframeRequest extends BaseType
 {
+
     /**
+     * The format for the start date
+     */
+    const FORMAT_START_DATE = 'd-m-Y';
+
+    /**
+     * The format for the end date
+     */
+    const FORMAT_END_DATE = 'd-m-Y';
+
+    /**
+     * The postal code of the delivery address.
+     *
      * @var string $PostalCode
      */
     protected $PostalCode = null;
 
     /**
+     * The 2 letter ISO country code of the delivery address.
+     * NL (Netherlands) or BE (Belgium).
+     *
      * @var string $CountryCode
      */
     protected $CountryCode = null;
 
     /**
+     * Date of the beginning of the timeframe.
+     * Format: dd-mm-yyyy.
+     *
      * @var string $StartDate
      */
     protected $StartDate = null;
 
     /**
+     * Date of the end of the timeframe.
+     * Format: dd-mm-yyyy.
+     *
+     * Enddate may not be before StartDate.
+     * Number of days between StartDate and Endate may not exceed 15 days.
+     * When it exceeds the number of days, the EndDate will be adjusted.
+     *
      * @var string $EndDate
      */
     protected $EndDate = null;
 
     /**
+     * The delivery options for which timeframes should be returned.
+     * At least one delivery option must be specified.
+     *
      * Valid options are:
      * Daytime:   Daytime delivery
      * Evening:   Evening delivery
@@ -36,26 +65,36 @@ class TimeframeRequest extends BaseType
     protected $Options = null;
 
     /**
+     * Possible values are true/false (no capitals allowed)
+     *
      * @var string $SundaySorting
      */
     protected $SundaySorting = null;
 
     /**
+     * The street name of the delivery address.
+     *
      * @var string $Street
      */
     protected $Street = null;
 
     /**
+     * The house number of the delivery address.
+     *
      * @var string $HouseNr
      */
     protected $HouseNr = null;
 
     /**
+     * The house number extension of the delivery address.
+     *
      * @var string $HouseNrExt
      */
     protected $HouseNrExt = null;
 
     /**
+     * The city of the delivery address.
+     *
      * @var string $City
      */
     protected $City = null;
@@ -63,10 +102,10 @@ class TimeframeRequest extends BaseType
     /**
      * @param string $PostalCode
      * @param string $CountryCode
-     * @param string $StartDate
-     * @param string $EndDate
+     * @param \DateTime $StartDate
+     * @param \DateTime $EndDate
      * @param ArrayOfstring $Options
-     * @param string $SundaySorting
+     * @param bool $SundaySorting
      * @param string $Street
      *     Optional
      * @param string $HouseNr
@@ -79,8 +118,8 @@ class TimeframeRequest extends BaseType
     public function __construct(
         $PostalCode,
         $CountryCode,
-        $StartDate,
-        $EndDate,
+        \DateTime $StartDate,
+        \DateTime $EndDate,
         ArrayOfstring $Options,
         $SundaySorting,
         $Street = null,
@@ -211,38 +250,48 @@ class TimeframeRequest extends BaseType
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getStartDate()
     {
-        return $this->StartDate;
+        return \DateTime::createFromFormat(
+            self::FORMAT_START_DATE,
+            $this->StartDate
+        );
     }
 
     /**
-     * @param string $StartDate
+     * @param \DateTime $StartDate
      * @return TimeframeRequest
      */
-    public function setStartDate($StartDate)
+    public function setStartDate(\DateTime $StartDate)
     {
-        $this->StartDate = $StartDate;
+        $this->StartDate = $StartDate->format(
+            self::FORMAT_START_DATE
+        );
         return $this;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getEndDate()
     {
-        return $this->EndDate;
+        return \DateTime::createFromFormat(
+            self::FORMAT_END_DATE,
+            $this->EndDate
+        );
     }
 
     /**
-     * @param string $EndDate
+     * @param \DateTime $EndDate
      * @return TimeframeRequest
      */
-    public function setEndDate($EndDate)
+    public function setEndDate(\DateTime $EndDate)
     {
-        $this->EndDate = $EndDate;
+        $this->EndDate = $EndDate->format(
+            self::FORMAT_END_DATE
+        );
         return $this;
     }
 
@@ -265,11 +314,11 @@ class TimeframeRequest extends BaseType
     }
 
     /**
-     * @return string
+     * @return bool
      */
     public function getSundaySorting()
     {
-        return $this->SundaySorting;
+        return $this->SundaySorting == 'true';
     }
 
     /**
@@ -278,7 +327,7 @@ class TimeframeRequest extends BaseType
      */
     public function setSundaySorting($SundaySorting)
     {
-        $this->SundaySorting = $SundaySorting;
+        $this->SundaySorting = $SundaySorting ? 'true' : 'false';
         return $this;
     }
 }

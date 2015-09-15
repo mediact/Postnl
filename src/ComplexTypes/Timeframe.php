@@ -4,6 +4,11 @@ class Timeframe extends BaseType
 {
 
     /**
+     * Format for the date
+     */
+    const FORMAT_DATE = 'd-m-Y';
+
+    /**
      * @var string $Date
      */
     protected $Date = null;
@@ -14,30 +19,37 @@ class Timeframe extends BaseType
     protected $Timeframes = null;
 
     /**
-     * @param string $Date
+     * @param \DateTime $Date
      * @param ArrayOfTimeframeTimeFrame $Timeframes
      */
-    public function __construct($Date, ArrayOfTimeframeTimeFrame $Timeframes)
-    {
+    public function __construct(
+        \DateTime $Date,
+        ArrayOfTimeframeTimeFrame $Timeframes
+    ) {
         $this->setDate($Date);
         $this->setTimeframes($Timeframes);
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDate()
     {
-        return $this->Date;
+        return \DateTime::createFromFormat(
+            self::FORMAT_DATE,
+            $this->Date
+        );
     }
 
     /**
-     * @param string $Date
+     * @param \DateTime $Date
      * @return Timeframe
      */
-    public function setDate($Date)
+    public function setDate(\DateTime $Date)
     {
-        $this->Date = $Date;
+        $this->Date = $Date->format(
+            self::FORMAT_DATE
+        );
         return $this;
     }
 

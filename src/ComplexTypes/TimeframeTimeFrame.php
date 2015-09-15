@@ -3,6 +3,16 @@
 class TimeframeTimeFrame extends BaseType
 {
     /**
+     * Format for from property
+     */
+    const FORMAT_FROM = 'H:i:s';
+
+    /**
+     * Format for to property
+     */
+    const FORMAT_TO = 'H:i:s';
+
+    /**
      * @var string $From
      */
     protected $From;
@@ -18,50 +28,59 @@ class TimeframeTimeFrame extends BaseType
     protected $Options;
 
     /**
-     * @param string $From
-     * @param string $To
+     * @param \DateTime $From
+     * @param \DateTime $To
      * @param ArrayOfstring $Options
      */
-    public function __construct($From, $To, ArrayOfstring $Options)
-    {
+    public function __construct(
+        \DateTime $From,
+        \DateTime $To,
+        ArrayOfstring $Options
+    ) {
         $this->setFrom($From);
         $this->setTo($To);
         $this->setOptions($Options);
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getFrom()
     {
-        return $this->From;
+        return \DateTime::createFromFormat(
+            self::FORMAT_FROM,
+            $this->From
+        );
     }
 
     /**
-     * @param string $From
+     * @param \DateTime $From
      * @return TimeframeTimeFrame
      */
-    public function setFrom($From)
+    public function setFrom(\DateTime $From)
     {
-        $this->From = $From;
+        $this->From = $From->format(self::FORMAT_FROM);
         return $this;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getTo()
     {
-        return $this->To;
+        return \DateTime::createFromFormat(
+            self::FORMAT_TO,
+            $this->To
+        );
     }
 
     /**
-     * @param string $To
+     * @param \DateTime $To
      * @return TimeframeTimeFrame
      */
-    public function setTo($To)
+    public function setTo(\DateTime $To)
     {
-        $this->To = $To;
+        $this->To = $To->format(self::FORMAT_TO);
         return $this;
     }
 
